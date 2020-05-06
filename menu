@@ -1,0 +1,29 @@
+from claseconjunto import conjunto
+
+def opcion0(m,n):
+    print("Adiós")
+def opcion1(m,n):
+    c = conjunto()
+    c= m + n
+    print(c)
+    input('')
+def opcion2(m,n):
+    c = conjunto()
+    c= m - n
+    print(c)
+    input('')
+def opcion3(m,n):
+    if m ==n: 
+        print("conjuntos iguales")
+    else:
+        print("conjunto distintos")
+    input('')
+switcher = {
+    0: opcion0,
+    1: opcion1,
+    2: opcion2,
+    3: opcion3
+    }
+def switch(argument,a,b):
+    func = switcher.get(argument, lambda: print("Opción incorrecta"))
+    func(a,b)
