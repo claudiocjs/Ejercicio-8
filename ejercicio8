@@ -1,0 +1,22 @@
+from claseconjunto import conjunto
+from menu import switch
+
+
+
+if __name__ == '__main__':
+    bandera=False
+    A= conjunto()
+    B= conjunto()
+    x=[3,8,5,9,3,4,5,0]
+    y=[1,4,0,2,9,5]
+    A.crearconjunto(x)
+    B.crearconjunto(y)
+    while not bandera:
+        print("MENU DE OPCIONES")
+        print("0: Salir.")
+        print("1: Union de 2 Conjuntos.")
+        print("2: Diferencia de 2 Conjuntos.")
+        print("3: Igualdad de 2 Conjuntos.")
+        opcion= int(input("Ingrese una opción: "))
+        switch(opcion,A,B)
+        bandera = int(opcion)==0 # Si lee el 0 cambia la bandera a true y sale del menú
