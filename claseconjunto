@@ -1,0 +1,108 @@
+class conjunto:
+    lista=[]
+    def __init__(self):
+        self.__lista=[]
+    def crearconjunto(self,a):
+        if isinstance(a,list):
+            self.__lista=a.copy()
+        else:
+            print("no es lista")
+    def agregarUNentero(self,a=0):
+        if isinstance(a,int):
+            self.__lista.append(a)
+    def __str__(self):
+        return '{}'.format(self.__lista)
+    def get_entero(self,ind=-1):
+        if isinstance(ind,int):
+            if ind > -1 and ind< len(self.__lista):
+                return self.__lista[ind]
+            else:
+                print("indice fuera de rago")
+    def mostrar_conjunto(self):
+        for i in range(len(self.__lista)):
+            print(self.__lista[i])
+    def ordenar_sorted(self):
+        return sorted(self.__lista)
+    def get_tamaño(self):
+        return len(self.__lista)
+    def __add__(self,otro):
+        if isinstance(otro,conjunto):
+            l2= sorted(self.__lista)
+            i=0
+            while i < len(l2):#eliminacion de numeros repetidos
+                cant=l2.count(l2[i])
+                if cant > 1:
+                    for j in range(cant-1):
+                        l2.remove(l2[i])
+                i+=1
+            l3= otro.ordenar_sorted()
+            i=0
+            while i < len(l3):#eliminacion de numeros repetidos
+                cant=l3.count(l3[i])
+                if cant > 1:
+                    for j in range(cant-1):
+                        l3.remove(l3[i])
+                i+=1
+            for i in range(len(l2)):
+                cant=l3.count(l2[i])
+                if cant != 0:
+                    l3.remove(l2[i])
+            for i in range (len(l3)):
+                l2.append(l3[i])
+            l2.sort()
+            return l2
+        else:
+            print("otro conjunto no es conjunto")
+            return None
+    def __sub__(self,otro):
+        if isinstance(otro,conjunto):
+            l2=sorted(self.__lista)
+            i=0
+            while i < len(l2):#eliminacion de numeros repetidos
+                cant=l2.count(l2[i])
+                if cant > 1:
+                    for j in range(cant-1):
+                        l2.remove(l2[i])
+                i+=1
+            l3=otro.ordenar_sorted()
+            i=0
+            while i < len(l3):#eliminacion de numeros repetidos
+                cant=l3.count(l3[i])
+                if cant > 1:
+                    for j in range(cant-1):
+                        l3.remove(l3[i])
+                i+=1
+            i=0
+            while i < len(l2):
+                cant=l3.count(l2[i])
+                if cant != 0:
+                    l3.remove(l2[i])
+                    l2.remove(l2[i])
+                    i=0
+                else:
+                    i+=1
+            for i in range (len(l3)):
+                l2.append(l3[i])
+            l2.sort()
+            return l2
+        else:
+            print("otro conjunto no es conjunto")
+            return None
+    def __eq__(self,otro):
+        if isinstance(otro,conjunto):
+            if len(self.__lista) == otro.get_tamaño() :
+                l2=sorted(self.__lista)
+                l3=otro.ordenar_sorted()
+                cant=0
+                for i in range(len(l2)):
+                    if l2.count(l2[i]) == l3.count(l2[i]):
+                        cant +=1
+                if cant == len(l2):
+                    return True
+                else:
+                    False
+            else:
+                return False
+        else:
+            print("otro conjunto no es conjunto")
+            return None
